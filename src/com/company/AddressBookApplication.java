@@ -1,7 +1,20 @@
 package com.company;
 import java.util.*;
+
+/**
+ * @author Sterling Jeppson
+ * @version 1.0
+ * @since 1.2
+ *
+ * purpose: This class is used to add data to and delete data from and query an address book
+ */
 public class AddressBookApplication {
 
+    /**
+     * creates an AddressBook initializes the AddressBook with some AddressEntry's and
+     * then prompts the user to add, delete, list, and search for entries.
+     * @param args command line arguments passed to main
+     */
     public static void main(String[] args) {
         AddressBook ab = new AddressBook();
         initAddressBook(ab);
@@ -9,6 +22,10 @@ public class AddressBookApplication {
         System.out.println(ab);
     }
 
+    /**
+     * initializes 2 AddressEntry instances with hard-coded data. Then adds entries to AddressBook class passed to function.
+     * @param ab is an instance of AddressBook class
+     */
     public static void initAddressBook(AddressBook ab) {
         AddressEntry entry1 = new AddressEntry("Sterling", "Jeppson",
                                                 "2759 Vine Dr.","Livermore",
@@ -22,6 +39,10 @@ public class AddressBookApplication {
         ab.add(entry2);
     }
 
+    /**
+     * prompts user for various commands to modify and display the AddressBook instance passed to it
+     * @param ab is an instance of AddressBook class
+     */
     public static void runApp(AddressBook ab) {
         Scanner keyboard = new Scanner(System.in);
         String answer;
