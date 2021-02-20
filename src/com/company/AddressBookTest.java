@@ -12,19 +12,41 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.*;
 
-class AddressBookTest {
+public class AddressBookTest {
 
+    /**
+     * this will be the stream that System writes to during the test
+     */
     private static final ByteArrayOutputStream testOutput = new ByteArrayOutputStream();
 
+    /**
+     * The AddressBook that the test class will use to test
+     */
     private AddressBook ab;
 
+    /**
+     * An instance of AddressEntry to load into AddressBook
+     */
     private final AddressEntry ae1 = new AddressEntry("John", "A", "Arroyo", "Dublin", "NY", 81777, "boring@gmail.com", "925-123-7924");
+
+    /**
+     * An instance of AddressEntry to load into AddressBook
+     */
     private final AddressEntry ae2 = new AddressEntry("John", "Doe", "Arroyo", "Dublin", "NY", 81777, "boring@gmail.com", "925-123-7924");
+
+    /**
+     * An instance of AddressEntry to load into AddressBook
+     */
     private final AddressEntry ae3 = new AddressEntry("John", "Dof", "Arroyo", "Dublin", "NY", 81777, "boring@gmail.com", "925-123-7924");
+
+    /**
+     * An instance of AddressEntry to load into AddressBook
+     */
     private final AddressEntry ae4 = new AddressEntry("John", "A", "Arroyo", "Dublin", "NY", 81777, "boring@gmail.com", "925-123-7924");
 
     /**
      * A method which sets standard output to print to testOutput instead of the console
+     * this is done once before any tests are run
      */
     @BeforeAll
     public static void setUp() {
@@ -34,19 +56,34 @@ class AddressBookTest {
         System.setOut(new PrintStream(testOutput));
     }
 
+    /**
+     * A method which creates a new AddressBook object and instantiates it with some
+     * AddressEntry objects which are private fields. It does this before every test is run
+     */
     @BeforeEach
     public void createAddressEntryObject() {
         this.ab = new AddressBook();
+        ab.add(ae1);
+        ab.add(ae2);
+        ab.add(ae3);
+        ab.add(ae4);
     }
 
     /**
-     * A method which clears testOutput after every test has completed
+     * clear the buffer of the testOutput after every test. testOutput is configured
+     * to be the stream with System prints to instead of the console
      */
     @AfterEach
     public void cleanUp() {
         testOutput.reset();
+        System.setIn(System.in);
     }
 
+    /** A method which allows the test function to pass input to the functions simulated user input
+     *  to the console
+     *
+     * @param data is a String which represents input the user would enter into the console
+     */
     private void provideInput(String data) {
         ByteArrayInputStream testInput = new ByteArrayInputStream(data.getBytes());
         System.setIn(testInput);
@@ -65,7 +102,16 @@ class AddressBookTest {
      */
     @Test
     void testRemove() {
-        String input = "y";
+        //I am getting a strange error where the assertEquals will fail but then it claims that either the
+        //contents are identical or they differ only in line separators. It has somethings to do with replacing
+        //\n with \r\n in a seemingly random combination. This makes its way too difficult to test these functions
+        //any more in this manner.
+        String result1 = "The following entry was found in the address book.\r\n" +
+                         "   " + ae1 + "\n" + "Hit 'y' to remove the entry or 'n' to return to main menu\r\n";
+        String input1 = "y";
+        provideInput(input1);
+        ab.remove("A");
+        assertEquals(result1, testOutput.toString());
     }
 
     /**
@@ -73,6 +119,7 @@ class AddressBookTest {
      */
     @Test
     void testAdd() {
+        ab.clear();
         ab.add(ae1);
         ab.add(ae4);
 
@@ -85,6 +132,7 @@ class AddressBookTest {
      */
     @Test
     void testReadFromFile() {
+        ab.clear();
         ab.readFromFile("test.txt");
         String expected = "";
         expected += "1: John A\n   Arroyo\n   Dublin, NY 81777\n   boring@gmail.com\n   111-234-7924\n\n";
@@ -93,12 +141,11 @@ class AddressBookTest {
         assertEquals(expected, ab.toString());
     }
 
+    /**
+     * Test method for {@link AddressBook#find(java.lang.String)}
+     */
     @Test
     void testFind() {
-        ab.add(ae1);
-        ab.add(ae2);
-        ab.add(ae3);
-        ab.add(ae4);
         String input1 = "";
         String input2 = "not here";
         String input3 = "A";
@@ -133,17 +180,21 @@ class AddressBookTest {
         testOutput.reset();
     }
 
+    /**
+     * Test method for {@link AddressBook#clear()}
+     */
     @Test
     void testClear() {
-        ab.add(ae1);
-        ab.add(ae2);
-        ab.add(ae3);
         ab.clear();
         assertEquals("", ab.toString());
     }
 
+    /**
+     * Test method for {@link AddressBook#toString()}
+     */
     @Test
     void testToString() {
+        ab.clear();
         //We dont know if add works properly. This test is invalid and shows nothing!!!! For example imagine that add does
         //not work properly so it inputs garbage data. toString does work properly either. In fact it is so bad that it
         //takes garbage and outputs what we expect in an extreme twist of fate. Now we believe that toString works but we
