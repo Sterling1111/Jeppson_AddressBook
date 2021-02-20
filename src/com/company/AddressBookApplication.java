@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * @author Sterling Jeppson
- * @version 1.0
+ * @version 1.9
  * @since 1.2
  *
  * purpose: This class is used to add data to and delete data from and query an address book
@@ -19,7 +19,6 @@ public class AddressBookApplication {
         AddressBook ab = new AddressBook();
         initAddressBook(ab);
         runApp(ab);
-        System.out.println(ab);
     }
 
     /**

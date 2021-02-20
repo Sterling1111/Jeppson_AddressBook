@@ -8,7 +8,7 @@ import java.io.*;
  * @version 1.0
  * @since 1.2
  *
- * purpose is to represent a generic address book
+ * The purpose of this class is to represent a generic address book
  */
 public class AddressBook {
 
@@ -21,14 +21,14 @@ public class AddressBook {
      */
     private final TreeMap<String, TreeSet<AddressEntry>> addressEntryList = new TreeMap<>();
 
-    /**
-     * prints to the console all of the Addresses contained in the AddressBook
+    /** a method which prints out all fields in all entries of the address book
+     *
      */
     public void list() {
         System.out.print(this.toString());
     }
 
-    /**
+    /** a method which removes an address entry from the address book
      *
      * @param lastName is the last name(or some initial consecutive chars) of the person contained
      *                 in the AddressEntry to be removed
@@ -47,6 +47,7 @@ public class AddressBook {
                 System.out.printf("%-3s" + s.first() + "\n", " ");
                 System.out.println("Hit 'y' to remove the entry or 'n' to return to main menu");
                 if (keyboard.nextLine().compareTo("y") == 0)
+
                     addressEntryList.get(s.first().getLastName()).remove(s.first());
             } else if (s.size() > 1) {
                 ArrayList<AddressEntry> list = new ArrayList<>();
@@ -78,7 +79,7 @@ public class AddressBook {
         }
     }
 
-    /**
+    /** a method which adds an address entry to the address book
      *
      * @param entry is an instance of AddressEntry to add to the AddressBook
      *
@@ -89,7 +90,7 @@ public class AddressBook {
         addressEntryList.computeIfAbsent(entry.getLastName(), k -> new TreeSet<>()).add(entry);
     }
 
-    /**
+    /** a method which reads in address entries from a text file and adds them to the address book
      *
      * @param filename is a string which is the name of a text file that contains address Entry data in a certain format
      *
@@ -115,7 +116,7 @@ public class AddressBook {
         }
     }
 
-    /**
+    /** a method which displays one or multiple address entries
      *
      * @param startOf_lastName is a string which contains either a full last name or the first consecutive chars
      * of a last name in an AddressEntry
@@ -126,7 +127,7 @@ public class AddressBook {
         if(tempMap.size() > 0) {
             int i = 1;
             System.out.println("The following " + tempMap.size() + " entries were found in the address book" +
-                    "for a last name starting with " + "\"" + startOf_lastName + "\"");
+                    " for a last name starting with " + "\"" + startOf_lastName + "\"");
             for(Map.Entry<String, TreeSet<AddressEntry>> entry : tempMap.entrySet()) {
                 for(AddressEntry item : entry.getValue()) {
                     System.out.printf("%-3s" + item + "\n\n", i + ":");
@@ -136,10 +137,12 @@ public class AddressBook {
         }
         else
             System.out.println("There were no entries were found in the address book" +
-                    "for a last name starting with " + "\"" + startOf_lastName + "\"");
+                    " for a last name starting with " + "\"" + startOf_lastName + "\"");
     }
 
-    /**
+    /** a method that returns a set of address entries in which the first characters in the
+     *  last name of each entry in the returned set are an exact match for the characters passed
+     *  to the function
      *
      * @param startOf_lastName full last name or start of last name
      * @return A TreeSet which contains all of the AddressEntry instances whose lastName field
