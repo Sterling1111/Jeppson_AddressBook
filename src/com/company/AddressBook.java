@@ -41,6 +41,7 @@ public class AddressBook {
     public void remove(String lastName) {
         //How exactly does git work????
         //Man I sure am lost
+        //I hate this
         TreeSet<AddressEntry> s = this.getPrefixSet(lastName);
         Scanner keyboard = new Scanner(System.in);
         try {
