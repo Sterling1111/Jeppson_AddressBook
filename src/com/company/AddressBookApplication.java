@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * @author Sterling Jeppson
- * @version 1.9
+ * @version 1.0
  * @since 1.2
  *
  * purpose: This class is used to add data to and delete data from and query an address book
@@ -50,30 +50,25 @@ public class AddressBookApplication {
             Menu.display_Menu();
             answer = keyboard.nextLine();
             switch (answer) {
-                case "a":
+                case "a" -> {
                     System.out.println("Enter in FileName:");
                     ab.readFromFile(keyboard.nextLine());
-                    break;
-                case "b":
-                    ab.add(Menu.prompt_All());
-                    break;
-                case "c":
+                }
+                case "b" -> ab.add(Menu.prompt_All());
+                case "c" -> {
                     System.out.println("Enter in Last Name of contact to remove:");
                     ab.remove(keyboard.nextLine());
-                    break;
-                case "d":
+                }
+                case "d" -> {
                     System.out.println("Enter in all or beginning of last name you wish to find:");
                     ab.find(keyboard.nextLine());
-                    break;
-                case "e":
-                    ab.list();
-                    break;
-                case "f":
+                }
+                case "e" -> ab.list();
+                case "f" -> {
                     System.out.println("Quitting.");
                     continueLoop = false;
-                    break;
-                default:
-                    System.out.println("Error: " + answer + " is not a valid selection.");
+                }
+                default -> System.out.println("Error: " + answer + " is not a valid selection.");
             }
         }
     }

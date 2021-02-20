@@ -7,15 +7,29 @@ import static org.junit.jupiter.api.Assertions.*;
 class AddressEntryTest {
 
     @Test
-    void testToString() {
+    public void testAddressEntry() {
+        AddressEntry ae = new AddressEntry("John", "Doe", "street", "city", "state", 12345,
+                "email@gmail.com", "123-456-7891");
+        String expected = "John Doe\n   street\n   city, state 12345\n   email@gmail.com\n   123-456-7891";
+        assertEquals(expected, ae.toString());
+    }
+
+    /**
+     * Test method for {@link AddressEntry#toString()}.
+     */
+    @Test
+    public void testToString() {
         AddressEntry ae = new AddressEntry("John", "Doe", "street", "city", "state", 12345,
                                            "email@gmail.com", "123-456-7891");
         String expected = "John Doe\n   street\n   city, state 12345\n   email@gmail.com\n   123-456-7891";
         assertEquals(expected, ae.toString());
     }
 
+    /**
+     * Test method for {@link AddressEntry#compareTo(com.company.AddressEntry)}.
+     */
     @Test
-    void testCompareTo() {
+    public void testCompareTo() {
         AddressEntry ae1 = new AddressEntry("John", "Doe", "street", "city", "state", 12345,
                 "email@gmail.com", "123-456-7891");
 
@@ -28,13 +42,31 @@ class AddressEntryTest {
         AddressEntry ae4 = new AddressEntry("John", "A", "street", "city", "state", 12345,
                 "email@gmail.com", "123-456-7891");
 
-        assertTrue(ae1.compareTo(ae2) == 0);
+        assertEquals(ae1.compareTo(ae2), 0);
         assertTrue(ae1.compareTo(ae3) < 0);
         assertTrue(ae1.compareTo(ae4) > 0);
     }
 
+    /**
+     * Test method for {@link AddressEntry#getFirstName()}
+     *                 {@link AddressEntry#getLastName()}
+     *                 {@link AddressEntry#getCity()}
+     *                 {@link AddressEntry#getState()}
+     *                 {@link AddressEntry#getZip()}
+     *                 {@link AddressEntry#getStreet()}
+     *                 {@link AddressEntry#getEmail()}
+     *                 {@link AddressEntry#getPhone()}
+     *                 {@link AddressEntry#setFirstName(java.lang.String)}
+     *                 {@link AddressEntry#setLastName(java.lang.String)}
+     *                 {@link AddressEntry#setCity(java.lang.String)}
+     *                 {@link AddressEntry#setState(java.lang.String)}
+     *                 {@link AddressEntry#setZip(int)}
+     *                 {@link AddressEntry#setStreet(java.lang.String)}
+     *                 {@link AddressEntry#setEmail(java.lang.String)}
+     *                 {@link AddressEntry#setPhone(java.lang.String)}
+     */
     @Test
-    void testGetSet() {
+    public void testGetSet() {
         AddressEntry ae = new AddressEntry();
         ae.setFirstName("John");
         ae.setLastName("Purcell");
