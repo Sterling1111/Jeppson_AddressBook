@@ -39,7 +39,7 @@ public class AddressBook {
      * elements and ask user to select element based on index.
      */
     public void remove(String lastName) {
-        //I am a crook
+        //How exactly does git work????
         TreeSet<AddressEntry> s = this.getPrefixSet(lastName);
         Scanner keyboard = new Scanner(System.in);
         try {
