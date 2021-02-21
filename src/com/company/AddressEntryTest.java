@@ -4,8 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddressEntryTest {
+/**
+ * @author Sterling Jeppson
+ * @version 1.0
+ * @since 1.2
+ *
+ * purpose: This class is used to test the AddressEntry class
+ */
+public class AddressEntryTest {
 
+    /**
+     * Test method for {@link AddressEntry#AddressEntry()}
+     */
     @Test
     public void testAddressEntry() {
         AddressEntry ae = new AddressEntry("John", "Doe", "street", "city", "state", 12345,

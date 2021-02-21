@@ -28,12 +28,10 @@ public class AddressBookApplication {
     public static void initAddressBook(AddressBook ab) {
         AddressEntry entry1 = new AddressEntry("Sterling", "Jeppson",
                                                 "2759 Vine Dr.","Livermore",
-                                                "CA", 94550, "925-289-6963",
-                                                             "sterlingijeppson@gmail.com");
+                                                "CA", 94550, "sterlingijeppson@gmail.com", "925-289-6963");
         AddressEntry entry2 = new AddressEntry("D.S", "Malik",
                 "2759 Vine Dr.","Livermore",
-                "CA", 94550, "925-289-6963",
-                "sterlingijeppson@gmail.com");
+                "CA", 94550, "sterlingijeppson@gmail.com","925-289-6963");
         ab.add(entry1);
         ab.add(entry2);
     }

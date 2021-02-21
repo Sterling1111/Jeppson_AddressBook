@@ -126,7 +126,8 @@ public class AddressBook {
         tempMap = addressEntryList.subMap(startOf_lastName, startOf_lastName + Character.MAX_VALUE);
         if(tempMap.size() > 0) {
             int i = 1;
-            System.out.println("The following " + tempMap.size() + " entries were found in the address book" +
+            System.out.println("The following " + tempMap.values().stream().mapToInt(TreeSet::size).sum() +
+                    " entries were found in the address book" +
                     " for a last name starting with " + "\"" + startOf_lastName + "\"");
             for(Map.Entry<String, TreeSet<AddressEntry>> entry : tempMap.entrySet()) {
                 for(AddressEntry item : entry.getValue()) {

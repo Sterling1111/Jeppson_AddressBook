@@ -10,8 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.*;
 
+/**
+ * @author Sterling Jeppson
+ * @version 1.0
+ * @since 1.2
+ *
+ * purpose: This class is used to test the AddressBook class
+ */
 public class AddressBookTest {
 
     /**

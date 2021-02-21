@@ -106,8 +106,8 @@ public class Menu {
      */
     public static AddressEntry prompt_All() {
         return new AddressEntry(prompt_FirstName(), prompt_LastName(), prompt_Street(),
-                                prompt_City(), prompt_State(), prompt_Zip(), prompt_Telephone(),
-                                prompt_Email());
+                                prompt_City(), prompt_State(), prompt_Zip(), prompt_Email(),
+                                prompt_Telephone());
     }
 
     /**

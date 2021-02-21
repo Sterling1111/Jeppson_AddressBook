@@ -10,6 +10,13 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Sterling Jeppson
+ * @version 1.0
+ * @since 1.2
+ *
+ * purpose: This class is used to test the Menu class
+ */
 public class MenuTest {
     private static final ByteArrayOutputStream testOutput = new ByteArrayOutputStream();
 
