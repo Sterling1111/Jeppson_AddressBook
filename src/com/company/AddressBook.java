@@ -39,6 +39,8 @@ public class AddressBook {
      * elements and ask user to select element based on index.
      */
     public void remove(String lastName) {
+        //first obtain a set which contains all address entries in address book where
+        //the first characters of their last name exactly match all of the chars in parameter lastname
         TreeSet<AddressEntry> s = this.getPrefixSet(lastName);
         Scanner keyboard = new Scanner(System.in);
         try {
@@ -47,7 +49,6 @@ public class AddressBook {
                 System.out.printf("%-3s" + s.first() + "\n", " ");
                 System.out.println("Hit 'y' to remove the entry or 'n' to return to main menu");
                 if (keyboard.nextLine().compareTo("y") == 0)
-
                     addressEntryList.get(s.first().getLastName()).remove(s.first());
             } else if (s.size() > 1) {
                 ArrayList<AddressEntry> list = new ArrayList<>();
@@ -126,6 +127,7 @@ public class AddressBook {
         tempMap = addressEntryList.subMap(startOf_lastName, startOf_lastName + Character.MAX_VALUE);
         if(tempMap.size() > 0) {
             int i = 1;
+            //this line computes total number of Address entries in tempMap
             System.out.println("The following " + tempMap.values().stream().mapToInt(TreeSet::size).sum() +
                     " entries were found in the address book" +
                     " for a last name starting with " + "\"" + startOf_lastName + "\"");
